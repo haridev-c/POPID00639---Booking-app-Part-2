@@ -7,9 +7,19 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function registerUser(ev) {
+  async function registerUser(ev) {
     ev.preventDefault();
-    axios.get("http://localhost:4000/test");
+    try {
+      await axios.post("/register", {
+        name,
+        email,
+        password,
+      });
+
+      alert("Registration Successful. Now you can login");
+    } catch (error) {
+      alert("registration failed. please try again");
+    }
   }
   return (
     <>
@@ -23,6 +33,7 @@ function RegisterPage() {
             <input
               type="text"
               placeholder="John Doe"
+              name="name"
               value={name}
               onChange={(ev) => setName(ev.target.value)}
             />
