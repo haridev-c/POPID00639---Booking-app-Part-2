@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../UserContext";
+import axios from "axios";
 
 function Header() {
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <header className="flex justify-between">
@@ -82,6 +86,7 @@ function Header() {
               />
             </svg>
           </div>
+          {!!user && <div>{user.name}</div>}
         </Link>
       </header>
     </>
